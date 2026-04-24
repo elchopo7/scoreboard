@@ -1,20 +1,64 @@
-let count = 0
-let countTwo = 0
-
-let num1 = document.querySelector("#num1-el")
-let num2 = document.querySelector("#num2-el")
-
-function add() {
-    count += 1
-    let scoreFree = count
-    num1.textContent = scoreFree
-    console.log("Home Team has "+ count)   
+let scores = {
+  home: 0,
+  guest: 0
 }
 
+let fouls = {
+  home: 0,
+  guest: 0
+}
+
+let homeScoreEl = document.getElementById("home-score")
+let guestScoreEl = document.getElementById("guest-score")
+let homeFoulBtn = document.getElementById("fouls-home")
+let guestFoulBtn = document.getElementById("fouls-guest")
 
 
+function addPoints(team, points) {
+  scores[team] += points
+  renderScores()
+  updateLead()
+}
 
+function addFoul(team) {
+  if (fouls[team] < 5) {
+    fouls[team] += 1
+  }
 
+  renderFouls()
+}
 
-// document.getElementById("num1-el").textContent = num1
-// document.getElementById("num2-el").textContent = num2
+function newGame() {
+  scores.home = 0
+  scores.guest = 0
+  fouls.home = 0
+  fouls.guest = 0
+
+  renderScores()
+  renderFouls()
+  updateLead()
+}
+
+function renderScores() {
+  homeScoreEl.textContent = scores.home
+  guestScoreEl.textContent = scores.guest
+}
+
+function renderFouls() {
+  homeFoulBtn.textContent = `Foul: ${fouls.home}`
+  guestFoulBtn.textContent = `Foul: ${fouls.guest}`
+
+  homeFoulBtn.classList.toggle("foul-max", fouls.home === 5)
+  guestFoulBtn.classList.toggle("foul-max", fouls.guest === 5)
+}
+
+function updateLead() {
+  homeScoreEl.classList.remove("leading")
+    guestScoreEl.classList.remove("leading")
+
+  if (scores.home > scores.guest) {
+    homeScoreEl.classList.add("leading")
+  } else if (scores.guest > scores.home) {
+    guestScoreEl.classList.add("leading")
+  }
+}

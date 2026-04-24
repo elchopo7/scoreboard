@@ -1,28 +1,36 @@
 <html>
-    <head>
-        <link rel="stylesheet" href="index.css">
-    </head>
-    <body>
-        <div class="container">
-            <div>
-                <h3>TEAM 1</h3>
-                <h1><span id="num1-el"></span>0</h1>
-                <div class="points">
-                    <button onclick="add()">+ 1</button>
-                    <button onclick="add2()">+ 2</button>
-                    <button onclick="add3()">+ 3</button>
-                </div>
-            </div>
-            <div>
-                <h3>TEAM 2</h3>
-                <h1><span id="num2-el"></span>0</h1>
-                <div class="points">
-                    <button onclick="add2()">+ 1</button>
-                    <button onclick="add2()">+ 2</button>
-                    <button onclick="add3()">+ 3</button>
-                </div>
-            </div>
+  <head>
+    <link rel="stylesheet" href="index.css">
+  </head>
+  <body>
+    <div class="container">
+      <div class="team">
+        <h3>HOME</h3>
+        <h1 id="home-score">0</h1>
+        <div class="points">
+          <button onclick="addPoints('home', 1)">+ 1</button>
+          <button onclick="addPoints('home', 2)">+ 2</button>
+          <button onclick="addPoints('home', 3)">+ 3</button>
         </div>
-        <script src="index.js"></script>
-    </body>
+      </div>
+
+      <div class="team">
+        <h3>GUEST</h3>
+        <h1 id="guest-score">0</h1>
+        <div class="points">
+          <button onclick="addPoints('guest', 1)">+ 1</button>
+          <button onclick="addPoints('guest', 2)">+ 2</button>
+          <button onclick="addPoints('guest', 3)">+ 3</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="extra">
+      <button id="fouls-home" onclick="addFoul('home')">Foul: 0</button>
+      <button onclick="newGame()">New Game</button>
+      <button id="fouls-guest" onclick="addFoul('guest')">Foul: 0</button>
+    </div>
+
+    <script src="index.js"></script>
+  </body>
 </html>
